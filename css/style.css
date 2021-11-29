@@ -1,0 +1,322 @@
+body, p, h1, ul, li, blockquote{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    font-family: "Volkorn", Geogia, serif;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    width: 100%;
+    display: block;
+    border-radius: 15px;
+}
+
+                        /*Grid geral*/
+
+.estrutura{
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) 3fr 300px;
+    grid-template-areas: /*Define a grid-area do site, rows e collumns*/
+    "header   header   header"
+    "sidenav  content  anuncios"
+    "footer   footer   footer";
+}
+
+@media (max-width:1200px) { /*Breakpoin, aqui mudas para duas colunas*/
+   .estrutura{
+    grid-template-columns: minmax(160px, 1fr) 3fr;
+       grid-template-areas: 
+        "header   header"
+        "sidenav  content"
+        "sidenav  anuncios"
+        "footer   footer";
+        
+   }
+}
+
+@media (max-width:760px) {
+    .estrutura{
+        grid-template-columns: 100%;
+        grid-template-areas: 
+        "header"
+        "sidenav"
+        "content"
+        "anuncios"
+        "footer"
+        ;
+    }
+}
+
+                        /*Header*/
+.header{
+    grid-area: header;/*liga a grid-area*/
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+    padding: 30px;
+    display: grid;/*Tonar header um grid e possibilita posicionar o menu.*/
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.logo{
+    max-width: 200px;
+}
+
+.header nav ul{
+    display: flex; /* Aqui podemos usar o flex-box para o alinhamento do itens*/
+    flex-wrap: wrap;
+}
+
+.header nav a{
+    display: block;
+    padding: 10px;
+    color:#fff;
+    font-size: 1.125em;
+    background: rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    transition: 0.1s;
+}
+
+.header nav a:hover{
+    background: rgba(0, 0, 0, .5);
+}
+
+.header li + li{ /*Após o primeiro <li> ele vai adcionar margin*/
+margin-left: 30px;
+}
+
+@media (max-width:760px){
+    .header{
+        grid-template-columns: auto;
+    }
+
+    .logo{
+        margin-bottom: 20px;
+    }
+
+    .header nav a{
+        font-size: 1em;
+    }
+
+    .header li + li{
+        margin-left: 30px;
+    }
+
+    
+}
+
+           /* Sidenav */
+.sidenav{
+    grid-area: sidenav;/* liga  a grid-area */
+    background: #fafbfc;
+    padding: 30px;
+}
+
+@media (max-width:760px){
+
+    .sidenav{ /* Cria a barra nos itens que passa do conteiner. */
+         overflow: auto;
+         -webkit-overflow-scrolling: touch;
+         -ms-overflow-style: -ms-autohiding-scrollbar; 
+    }
+
+    .sidenav ul{
+        display: flex;
+   }
+
+   .sidenav li{
+       flex: 1 0 60px;
+   }
+
+   .sidenav{
+       padding: 0 30px;
+   }
+
+   .sidenav ul li a{
+       margin: 30px 30px 30px 0;
+   }
+}
+.sidenav li a{
+    display: block;/*Por que os itens devem ficar em "line"*/
+    min-width: 60px;
+    max-width: 100px;
+    margin: 0 auto 30px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 8px rgba(44,44,44,0.15);
+}
+
+.sidenav li a:hover{
+    background: #b07dfb;
+}
+
+.sidenav{
+    grid-area: sidenav;/*liga a grid-area*/
+}
+
+                /* Content */
+
+.content{
+    grid-area: content;/*liga a grid-area*/
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width:600px) {
+    .content{
+        grid-template-columns: auto;
+    }
+}
+
+.col-wide{/* classe por responsável por fazer itens ocupar duas liinhas */
+    grid-column: 1/-1;
+}
+
+.img-1{ /* Faz a img-1 ocupar duas linhas e alinhado com o final */
+    grid-row: span 2;
+    align-self: end;
+}
+
+.img-2{
+    align-self: end;
+}
+
+                /* Estilos do content */
+
+p{
+    font-size: 1.2em;
+    line-height: 1.6em;
+    letter-spacing: -0.005em;
+    color: rgba(0, 0, 0, .7);
+}
+
+.informacoes p + p{/* Seleciono o "P" que vem após outro "P" */
+    margin-top: 30px;
+
+}
+
+                /* titutlo */
+
+.titulo{
+    color: #b07dfb;
+}
+
+.titulo h1{
+    font-size: 3.75em;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.titulo span{
+    font-size: 0.875em;
+    font-style: italic;
+}
+
+                /* Caracteristicas */
+
+.caracteristicas{
+    display: flex;
+    align-items: flex-start;
+}
+
+.caracteristicas > div{ /* Aqui estou falando com as "div" dentro de "caracteristicas" */
+width: 80px;
+text-align: center;
+background: linear-gradient(135deg, #8844ee, #b07dfb);
+border-radius: 5px;
+box-shadow: 5px 5px 15px 8px rgba(44,44,44,0.15);
+position: relative;
+}
+
+.caracteristicas > div:first-child{
+    margin-right: 30px;
+}
+
+.caracteristicas span{
+    display: block;
+    color: #b07dfb;
+}
+
+.numero{
+    font-size: 3em;
+    line-height: 1;
+    margin-top: 10px auto;
+
+}
+
+.rotulo{
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    padding: 5px 0;
+    position: relative;
+}
+
+.destaque{
+    font-size: 0.875em;
+    color: #b07dfb;
+    max-width: 16em;
+}
+
+.citacao, .atributos{
+    align-self: start ;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, .15);
+    background: linear-gradient(135deg,#8844ee, #b07df8);
+}
+
+.citacao p{
+    font-size: 1.5em;
+    font-style: italic;
+    text-align: center;
+    color: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.atributos li{
+color: #fff;
+font-family: Courier, monospace;
+font-size: 1.125em;
+padding: 15px;
+}
+
+.atributos li + li{
+    border-top: 2px solid #b07dfb;
+}
+
+                /*Anuncios*/
+.anuncios{
+    grid-area: anuncios;/*liga a grid area*/
+    background: #fafbfc;
+    display: grid;
+    gap: 30px;
+    align-content: start;
+    padding: 30px;
+    grid-template-columns: repeat(auto-fit, minmax 150px, 1fr); /*(auto-fit) Tentar por o máximo de comuna*/
+}
+                /* Footer */
+.footer{
+    grid-area: footer;/*liga a grid area*/
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+}
+
+.footer p{
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+}
